@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
+        <property name="connection.url">jdbc:postgresql://localhost/ovchip</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">Soufyan01</property>
+
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+
+        <mapping class="domain.Reiziger"/>
+        <mapping class="domain.Adres"/>
+        <mapping class="domain.OVChipkaart"/>
+        <mapping class="domain.Product"/>
+
+
+
+    </session-factory>
+</hibernate-configuration>
