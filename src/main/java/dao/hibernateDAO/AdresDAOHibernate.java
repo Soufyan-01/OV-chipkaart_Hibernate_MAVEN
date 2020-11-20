@@ -8,7 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -54,14 +53,12 @@ public class AdresDAOHibernate implements AdresDAO {
     }
 
     @Override
-    public boolean update(Adres adres) throws SQLException {
+    public boolean update(Adres adres) {
         Transaction transaction = null;
         try {
             session.beginTransaction();
             session.merge(adres);
             session.getTransaction().commit();
-
-
         } catch (Exception e) {
             if(transaction != null){
                 transaction.rollback();
@@ -72,7 +69,7 @@ public class AdresDAOHibernate implements AdresDAO {
     }
 
     @Override
-    public boolean delete(Adres adres) throws SQLException {
+    public boolean delete(Adres adres) {
         Transaction transaction = null;
         try {
             session.beginTransaction();
@@ -81,7 +78,6 @@ public class AdresDAOHibernate implements AdresDAO {
                 session.delete(adres);
             }
             session.getTransaction().commit();
-
         } catch (Exception e) {
             if(transaction != null){
                 transaction.rollback();
@@ -116,5 +112,5 @@ public class AdresDAOHibernate implements AdresDAO {
         }
         return null;
     }
-    }
+}
 

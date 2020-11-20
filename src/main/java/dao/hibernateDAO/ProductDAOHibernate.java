@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,6 @@ public class ProductDAOHibernate implements ProductDAO {
     public ProductDAOHibernate(Session session) {
         this.session = session;
     }
-
 
     @Override
     public boolean save(Product product) {
@@ -37,14 +35,12 @@ public class ProductDAOHibernate implements ProductDAO {
     }
 
     @Override
-    public boolean update(Product product) throws SQLException {
+    public boolean update(Product product) {
         Transaction transaction = null;
         try {
             session.beginTransaction();
             session.merge(product);
             session.getTransaction().commit();
-
-
         } catch (Exception e) {
             if(transaction != null){
                 transaction.rollback();
@@ -55,7 +51,7 @@ public class ProductDAOHibernate implements ProductDAO {
     }
 
     @Override
-    public boolean delete(Product product) throws SQLException {
+    public boolean delete(Product product) {
         Transaction transaction = null;
         try {
             session.beginTransaction();
@@ -64,7 +60,6 @@ public class ProductDAOHibernate implements ProductDAO {
                 session.delete(product);
             }
             session.getTransaction().commit();
-
         } catch (Exception e) {
             if(transaction != null){
                 transaction.rollback();
@@ -94,7 +89,6 @@ public class ProductDAOHibernate implements ProductDAO {
                     "JOIN ovchipkaart.products product WHERE ovchipkaart.kaart_nummer = : kaart_nummer"))
                     .setParameter("kaart_nummer", ovChipkaart.getKaart_nummer())
                     .getResultList();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -110,7 +104,6 @@ public class ProductDAOHibernate implements ProductDAO {
             System.out.println(e.getMessage());
         }
         return null;
-
     }
-    }
+}
 

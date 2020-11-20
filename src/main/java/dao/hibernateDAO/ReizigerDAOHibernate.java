@@ -1,6 +1,5 @@
 package dao.hibernateDAO;
 
-import com.sun.xml.bind.v2.model.core.ID;
 import dao.AdresDAO;
 import dao.OVChipkaartDAO;
 import dao.ReizigerDAO;
@@ -9,9 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.List;
 
 public class ReizigerDAOHibernate implements ReizigerDAO {
@@ -30,9 +27,6 @@ public class ReizigerDAOHibernate implements ReizigerDAO {
 
     public void setOdao(OVChipkaartDAO odao){this.odao = odao;}
 
-
-
-
     @Override
     public boolean save(Reiziger reiziger) {
         Transaction transaction = null;
@@ -40,8 +34,6 @@ public class ReizigerDAOHibernate implements ReizigerDAO {
             session.beginTransaction();
             session.saveOrUpdate(reiziger);
             session.getTransaction().commit();
-
-
         } catch (Exception e) {
             if(transaction != null){
                 transaction.rollback();
@@ -52,14 +44,12 @@ public class ReizigerDAOHibernate implements ReizigerDAO {
     }
 
     @Override
-    public boolean update(Reiziger reiziger) throws SQLException {
+    public boolean update(Reiziger reiziger) {
         Transaction transaction = null;
         try {
             session.beginTransaction();
             session.merge(reiziger);
             session.getTransaction().commit();
-
-
         } catch (Exception e) {
             if(transaction != null){
                 transaction.rollback();
@@ -70,7 +60,7 @@ public class ReizigerDAOHibernate implements ReizigerDAO {
     }
 
     @Override
-    public boolean delete(Reiziger reiziger) throws SQLException {
+    public boolean delete(Reiziger reiziger) {
         Transaction transaction = null;
         try {
             session.beginTransaction();
@@ -79,7 +69,6 @@ public class ReizigerDAOHibernate implements ReizigerDAO {
                 session.delete(reiziger);
             }
             session.getTransaction().commit();
-
         } catch (Exception e) {
             if(transaction != null){
                 transaction.rollback();

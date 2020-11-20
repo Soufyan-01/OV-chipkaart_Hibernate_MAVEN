@@ -2,7 +2,6 @@ package dao.hibernateDAO;
 
 import dao.OVChipkaartDAO;
 import dao.ReizigerDAO;
-import domain.Adres;
 import domain.OVChipkaart;
 import domain.Reiziger;
 import org.hibernate.Session;
@@ -17,7 +16,6 @@ public class OVChipkaartDAOHibernate implements OVChipkaartDAO {
     private Session session;
     private ReizigerDAO rdao;
 
-
     public OVChipkaartDAOHibernate(ReizigerDAO rdao){
         this.rdao = rdao;
     }
@@ -26,9 +24,8 @@ public class OVChipkaartDAOHibernate implements OVChipkaartDAO {
         this.session = session;
     }
 
-
     @Override
-    public OVChipkaart findByKaartNummer(int kaart_nummer) throws SQLException {
+    public OVChipkaart findByKaartNummer(int kaart_nummer) {
         try {
             OVChipkaart ovChipkaart = (OVChipkaart) session.get(OVChipkaart.class, kaart_nummer);
             return ovChipkaart;
@@ -55,14 +52,12 @@ public class OVChipkaartDAOHibernate implements OVChipkaartDAO {
     }
 
     @Override
-    public boolean update(OVChipkaart ovChipkaart) throws SQLException {
+    public boolean update(OVChipkaart ovChipkaart) {
         Transaction transaction = null;
         try {
             session.beginTransaction();
             session.merge(ovChipkaart);
             session.getTransaction().commit();
-
-
         } catch (Exception e) {
             if(transaction != null){
                 transaction.rollback();
@@ -73,7 +68,7 @@ public class OVChipkaartDAOHibernate implements OVChipkaartDAO {
     }
 
     @Override
-    public boolean delete(OVChipkaart ovChipkaart) throws SQLException {
+    public boolean delete(OVChipkaart ovChipkaart) {
         Transaction transaction = null;
         try {
             session.beginTransaction();
@@ -82,7 +77,6 @@ public class OVChipkaartDAOHibernate implements OVChipkaartDAO {
                 session.delete(ovChipkaart);
             }
             session.getTransaction().commit();
-
         } catch (Exception e) {
             if(transaction != null){
                 transaction.rollback();
@@ -115,6 +109,5 @@ public class OVChipkaartDAOHibernate implements OVChipkaartDAO {
             System.out.println(e.getMessage());
         }
         return null;
-
     }
 }
