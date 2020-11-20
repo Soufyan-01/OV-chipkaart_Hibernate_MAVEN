@@ -161,7 +161,7 @@ public class Main {
         System.out.println();
 
         //AdresDAOHibernate.save()
-        System.out.print("[Test] Eerst " + adao.findAll().size() + " adressem, na AdresDAOHibernate.save() ");
+        System.out.print("[Test] Eerst " + adao.findAll().size() + " adressen, na AdresDAOHibernate.save() ");
 
         String gbdatum = "2000-12-12";
         Reiziger Henk2 = new Reiziger(7, "E", "van", "WW", java.sql.Date.valueOf(gbdatum));
@@ -200,7 +200,7 @@ public class Main {
 
         // AdresDAOHibernate.findall()
         List<OVChipkaart> ovChipkaarts = odao.findAll();
-        System.out.println("[Test] AdresDAOHibernate.findAll() geeft de volgende adressen:");
+        System.out.println("[Test] OVChipkaartDAOHibernate.findAll() geeft de volgende OVChipkaarten:");
         for (OVChipkaart ovChipkaart : ovChipkaarts) {
             System.out.println(ovChipkaart);
         }
@@ -218,7 +218,7 @@ public class Main {
         System.out.print("[Test] Eerst " + ovChipkaarts.size() + " ovchip, na OVChipkaartDAO.save() ");
         //odao.save(ovChipkaart1);
         ovChipkaarts = odao.findAll();
-        System.out.println(ovChipkaarts.size() + " adressen\n");
+        System.out.println(ovChipkaarts.size() + " ovchipkaarten\n");
 
 
         //update
@@ -234,12 +234,12 @@ public class Main {
         System.out.println();
 
         // zoek adres op id
-        System.out.println("[TEST] AdresDAOHibernate.findById");
+        System.out.println("[TEST] OVChipkaartDAOHibernate.findById");
         System.out.println(odao.findByKaartNummer(79625));
         System.out.println();
 
         //verwijderen van een reiziger
-        System.out.println("[TEST] Adressen: " + ovChipkaarts.size() + " AdresDAOHibernate.delete();");
+        System.out.println("[TEST] OVChipkaarten: " + ovChipkaarts.size() + " OVChipkaartDAOHibernate.delete();");
         odao.delete(ovChipkaart1);
         ovChipkaarts = odao.findAll();
         System.out.println(ovChipkaarts.size() + "\n");
@@ -250,7 +250,7 @@ public class Main {
 
         // AdresDAOHibernate.findall()
         List<Product> products = pdao.findAll();
-        System.out.println("[Test] AdresDAOHibernate.findAll() geeft de volgende adressen:");
+        System.out.println("[Test] ProductDAOHibernate.findAll() geeft de volgende producten:");
         for (Product product : products) {
             System.out.println(product);
         }
@@ -264,52 +264,52 @@ public class Main {
         pdao.update(product);
 
         //save
-        System.out.print("[Test] Eerst " + products.size() + " ovchip, na OVChipkaartDAO.save() ");
+        System.out.print("[Test] Eerst " + products.size() + " product(en), na ProductDAOHibernate.save() ");
         pdao.save(product);
         products = pdao.findAll();
-        System.out.println(products.size() + " adressen\n");
+        System.out.println(products.size() + " producten\n");
 
         //update
-        System.out.println("[Test] Eerst " + "OVChipkaart.update();");
+        System.out.println("[Test] Eerst " + "ProductenDAOHibernate.update();");
         System.out.println("voor wijziging: " + product);
         product.setPrijs(2000.00);
         pdao.update(product);
         System.out.println("Na wijziging: " + product + "\n");
 
         // zoeken op reiziger
-        System.out.println("[Test] OVChipkaartDAO.findByOVChipkaart: ");
+        System.out.println("[Test] ProductDAOHibernate.findByOVChipkaart: ");
         System.out.println(pdao.findByOVChipkaart(ovChipkaart1));
         System.out.println();
 
         // zoek adres op id
-        System.out.println("[TEST] AdresDAOHibernate.findById");
+        System.out.println("[TEST] ProductDAOHibernate.findById");
         System.out.println(pdao.findById(3));
         System.out.println();
 
         //verwijderen van een reiziger
-        System.out.println("[TEST] Adressen: " + products.size() + " AdresDAOHibernate.delete();");
-        //pdao.delete(product);
+        System.out.println("[TEST] Producten: " + products.size() + " ProductDAOHibernate.delete();");
+        pdao.delete(product);
         products = pdao.findAll();
         System.out.println(products.size() + "\n");
 
-
-        Product p = pdao.findById(3);
-        System.out.println(p);
-
-        OVChipkaart o = p.getOvChipkaarts().get(0);
-        System.out.println(o);
-
-        Product p2 = o.getProducts().get(1);
-        System.out.println(p2);
-
-        OVChipkaart o2 = p2.getOvChipkaarts().get(0);
-        System.out.println(o2);
-
-        Product p3 = o.getProducts().get(2);
-        System.out.println(p3);
-
-        OVChipkaart o3 = p3.getOvChipkaarts().get(0);
-        System.out.println(o3);
+//
+//        Product p = pdao.findById(3);
+//        System.out.println(p);
+//
+//        OVChipkaart o = p.getOvChipkaarts().get(0);
+//        System.out.println(o);
+//
+//        Product p2 = o.getProducts().get(1);
+//        System.out.println(p2);
+//
+//        OVChipkaart o2 = p2.getOvChipkaarts().get(0);
+//        System.out.println(o2);
+//
+//        Product p3 = o.getProducts().get(2);
+//        System.out.println(p3);
+//
+//        OVChipkaart o3 = p3.getOvChipkaarts().get(0);
+//        System.out.println(o3);
     }
 
 

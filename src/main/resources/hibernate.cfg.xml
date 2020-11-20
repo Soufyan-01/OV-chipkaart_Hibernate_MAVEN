@@ -10,8 +10,8 @@
         <property name="connection.username">postgres</property>
         <property name="connection.password">Soufyan01</property>
 
-        <property name="show_sql">true</property>
-        <property name="format_sql">true</property>
+<!--        <property name="show_sql">true</property>-->
+<!--        <property name="format_sql">true</property>-->
 
         <mapping class="domain.Reiziger"/>
         <mapping class="domain.Adres"/>
